@@ -2,7 +2,7 @@
   "agvs": [
     {
       "id": "1",
-      "target_area": "A-20"
+      "target_area": "B-05"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
