@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "DTDataSubsystem.h"
@@ -11,6 +11,9 @@
 void UDTDataSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+
+	AreaLocationTable.Add(TEXT("B-01"), FVector(500.0f, 0.0f, 0.0f));
+	AreaLocationTable.Add(TEXT("A-01"), FVector(-500.0f, 300.0f, 0.0f));
 
 	GetWorld()->GetTimerManager().SetTimer(
 		PollTimerHandle, this, &ThisClass::PollServer, 2.0f, true);
@@ -52,6 +55,19 @@ void UDTDataSubsystem::OnPollResponseReceived(FHttpRequestPtr Request, FHttpResp
 		if (JsonObject->TryGetStringField(TEXT("target_area"), TargetArea))
 		{
 			UE_LOG(LogTemp, Log, TEXT("[DT] target_area = %s"), *TargetArea);
+
+			if (TargetArea != LastTargetArea)
+			{
+				if (const FVector* FoundLocation = AreaLocationTable.Find(TargetArea))
+				{
+					LastTargetArea = TargetArea;
+					OnAGVTargetChanged.Broadcast(TargetArea, *FoundLocation);
+				}
+				else
+				{
+					UE_LOG(LogTemp, Warning, TEXT("[DT] Unknown target_area '%s' - no mapping found"), *TargetArea);
+				}
+			}
 		}
 	}
 }
