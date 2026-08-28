@@ -7,8 +7,10 @@ public class ProjectDT : ModuleRules
 	public ProjectDT(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { 
+
+        PublicIncludePaths.AddRange(new string[] { "ProjectDT" });
+
+        PublicDependencyModuleNames.AddRange(new string[] { 
 			"Core", 
 			"CoreUObject", 
 			"Engine", 

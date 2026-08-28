@@ -2,7 +2,32 @@
   "agvs": [
     {
       "id": "1",
-      "target_area": "Z-99"
+      "status": "Idle",
+      "targetArea": "Home",
+      "bHasPallet": false,
+      "bHasCargo": false,
+      "battery": 100,
+      "errorMessage": "",
+      "lastUpdated": "2026-08-27T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "status": "Idle",
+      "targetArea": "Home",
+      "bHasPallet": false,
+      "bHasCargo": false,
+      "battery": 87,
+      "errorMessage": "",
+      "lastUpdated": "2026-08-27T00:00:00Z"
+    }
+  ],
+  "robotArms": [
+    {
+      "id": "Arm-01",
+      "status": "Idle",
+      "temperature": 25,
+      "errorMessage": "",
+      "lastUpdated": "2026-08-27T00:00:00Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
