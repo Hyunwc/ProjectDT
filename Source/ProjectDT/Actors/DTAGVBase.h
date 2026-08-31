@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -21,23 +21,20 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-public:	
-	virtual void Tick(float DeltaTime) override;
-
 public:
-	// ½Äº°
+	// ì‹ë³„
 	UPROPERTY(EditAnywhere, Category = "DT|AGV")
 	int32 AGVId = 1;
 
-	// »óÅÂ
+	// ìƒíƒœ
 	UPROPERTY(BlueprintReadOnly, Category = "DT|AGV")
 	EDTAGVStatus CurrentStatus = EDTAGVStatus::Idle;
 
-	// StateTree Task°¡ ÀĞ´Â °ª
-	UPROPERTY(BlueprintReadWrite, Category = "DT|AGV")
+	// StateTree Taskê°€ ì½ëŠ” ê°’
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DT|AGV")
 	FVector CurrentLegTarget;
 
-	UPROPERTY(BlueprintReadWrite, Category = "DT|AGV")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DT|AGV")
 	FName CommandedTargetArea = NAME_None;
 
 	UPROPERTY(EditAnywhere, Category = "DT|AGV|Timing")
@@ -50,7 +47,7 @@ public:
 	float UnloadDuration = 2.0f;
 
 public:
-	// StateTree Task / BP¿¡¼­ È£ÃâÇÏ´Â c++ ÇÔ¼ö
+	// StateTree Task / BPì—ì„œ í˜¸ì¶œí•˜ëŠ” c++ í•¨ìˆ˜
 	UFUNCTION(BlueprintCallable, Category = "DT|AGV")
 	bool ResolveZone(FName ZoneName, FVector& OutLocation) const;
 
@@ -71,6 +68,9 @@ private:
 	TObjectPtr<UDTDataSubsystem> DataSubsystem;
 
 	FName LastProcessedTargetArea = NAME_None;
+
+	bool bBaselineSet = false;
+
 private:
 	UFUNCTION()
 	void HandleSnapshot(const FDTFactorySnapshot& Snapshot);

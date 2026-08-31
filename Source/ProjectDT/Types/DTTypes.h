@@ -98,13 +98,13 @@ struct FDTZoneRow : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
-	EDTZoneType ZoneType;
+	EDTZoneType ZoneType = EDTZoneType::Home;
 
 	UPROPERTY(EditAnywhere)
-	FVector WorldLocation;
+	FVector WorldLocation = FVector::ZeroVector;
 
 	UPROPERTY(EditAnywhere)
-	FRotator WorldRotation;
+	FRotator WorldRotation = FRotator::ZeroRotator;
 };
 
 USTRUCT(BlueprintType)
